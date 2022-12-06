@@ -7,4 +7,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'wallaTechTest';
+
+  optionsDropdownSearchFilter: string[] = ['Nombre', 'Descripcion', 'Precio', 'Email'];
+  defaultStringDropdownFilter: string = 'Select a filter';
+
+  selectedFruit: string = '';
+
+  changeFruit(fruit: string) {
+    this.selectedFruit = fruit;
+  }
+
 }

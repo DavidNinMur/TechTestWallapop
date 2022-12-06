@@ -1,0 +1,41 @@
+<div class="relative w-32 sm:w-36 lg:w-40">
+  <div
+    (click)="toggle()"
+    class="relative px-4 py-2 rounded-xl box-shadow flex justify-between items-center cursor-pointer"
+  >
+    <div class="mr-2">
+      <span *ngIf="!SelectedItem" class="text-xs opacity-60">
+        {{ DefaultPhrase }}
+      </span>
+      <span *ngIf="SelectedItem" class="text-sm">
+        {{ SelectedItem }}
+      </span>
+    </div>
+    <div>
+      <fa-icon
+        *ngIf="!showDropdown"
+        [icon]="iconArrowDown"
+        class="h-4 w-4 opacity-60"
+      ></fa-icon>
+      <fa-icon
+        *ngIf="showDropdown"
+        [icon]="iconArrowUp"
+        class="h-4 w-4 opacity-60"
+      ></fa-icon>
+    </div>
+  </div>
+  <div
+    *ngIf="showDropdown"
+    class="absolute w-full py-1 mt-2 border border-1 box-shadow rounded-xl cursor-pointer"
+  >
+    <div
+      (click)="select(option)"
+      *ngFor="let option of Options"
+      class="py-2 px-4 w-full hover:bg-neutral-100"
+    >
+      <span class="text-sm">
+        {{ option }}
+      </span>
+    </div>
+  </div>
+</div>

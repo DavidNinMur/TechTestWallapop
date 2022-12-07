@@ -5,15 +5,18 @@
   background-color: $green-background;
 
   .container-info {
-    row-gap: 25px;
+    row-gap: 15px;
     display: flex;
   }
   .container-input-text {
     display: flex;
     flex-direction: column;
     width: 35%;
+    height: 5rem;
+    justify-content: space-evenly;
     input {
       width: 80%;
+      height: 30px;
       padding-left: 10px;
     }
     span {
@@ -49,7 +52,7 @@
     }
   }
   .container-button {
-    display: contents !important;
+    flex-direction: column !important;
     .search-button {
       margin-top: 5px !important;
     }

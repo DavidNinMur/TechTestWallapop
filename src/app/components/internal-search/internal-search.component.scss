@@ -1,0 +1,50 @@
+@import "../../../assets/styles/colors.scss";
+@import "../../../assets/styles/general.scss";
+
+.container-internal-search {
+  background-color: $green-background;
+
+  .container-info {
+    row-gap: 25px;
+    display: flex;
+  }
+  .container-input-text {
+    display: flex;
+    flex-direction: column;
+    width: 35%;
+    input {
+      width: 80%;
+    }
+    span {
+      color: rgba(0, 0, 0, 0.8);
+    }
+  }
+
+  .search-button {
+    background: $green-strong-background;
+    color: white;
+  }
+
+  .search-button:hover {
+    background: $green-strong-background-hover;
+    color: white;
+  }
+}
+.ngx-slider .ngx-slider-pointer {
+  background-color: $green-strong-background !important;
+}
+
+@media screen and (max-width: 600px) {
+  .container-internal-search {
+    .container-info {
+      display: contents !important;
+    }
+    .container-input-text {
+      margin-bottom: 20px;
+      width: 100% !important;
+    }
+    input {
+      width: 100% !important;
+    }
+  }
+}

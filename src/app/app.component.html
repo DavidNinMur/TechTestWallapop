@@ -1,8 +1,7 @@
 <div class="p-4">
-  <Dropdown
-    [Options]="optionsDropdownSearchFilter"
-    [DefaultPhrase]="defaultStringDropdownFilter"
-    (OnChange)="changeFruit($event)"
-  ></Dropdown>
+  <div class="container-favButton"></div>
+  <div class="container-internal-search">
+    <InternalSearch></InternalSearch>
+  </div>
   <router-outlet></router-outlet>
 </div>

@@ -1,0 +1,32 @@
+<div class="container-internal-search wallapop-bck-style py-6 px-12">
+  <div class="container-info w-full h-full flex-wrap justify-between">
+    <div class="container-input-text">
+      <span class="text-base">Name</span>
+      <input class="wallapop-bck-style" type="text" id="name" name="name" />
+    </div>
+    <div class="container-input-text">
+      <span class="text-base">Description</span>
+      <input class="wallapop-bck-style" type="text" id="name" name="name" />
+    </div>
+    <div class="container-input-text">
+      <span class="text-base">Price</span>
+      <ngx-slider
+        [(value)]="value"
+        [(highValue)]="highValue"
+        [options]="options"
+      ></ngx-slider>
+    </div>
+    <div class="container-input-text">
+      <span class="text-base">Email</span>
+      <input class="wallapop-bck-style" type="text" id="name" name="name" />
+    </div>
+  </div>
+  <div class="container-button flex justify-end mt-2">
+    <button
+      class="search-button wallapop-bck-style px-7 py-2"
+      (click)="onSubmit()"
+    >
+      <span class="text-base font-semibold">Search</span>
+    </button>
+  </div>
+</div>

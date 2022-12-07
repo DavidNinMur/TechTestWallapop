@@ -14,6 +14,7 @@
     width: 35%;
     input {
       width: 80%;
+      padding-left: 10px;
     }
     span {
       color: rgba(0, 0, 0, 0.8);
@@ -45,6 +46,12 @@
     }
     input {
       width: 100% !important;
+    }
+  }
+  .container-button {
+    display: contents !important;
+    .search-button {
+      margin-top: 5px !important;
     }
   }
 }

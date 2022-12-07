@@ -2,28 +2,46 @@
   <div class="container-info w-full h-full flex-wrap justify-between">
     <div class="container-input-text">
       <span class="text-base">Name</span>
-      <input class="wallapop-bck-style" type="text" id="name" name="name" />
+      <input
+        class="wallapop-bck-style"
+        type="text"
+        [(ngModel)]="newSearchEngine.productName"
+      />
     </div>
     <div class="container-input-text">
       <span class="text-base">Description</span>
-      <input class="wallapop-bck-style" type="text" id="name" name="name" />
+      <input
+        class="wallapop-bck-style"
+        type="text"
+        [(ngModel)]="newSearchEngine.productDescription"
+      />
     </div>
     <div class="container-input-text">
       <span class="text-base">Price</span>
       <ngx-slider
-        [(value)]="value"
-        [(highValue)]="highValue"
-        [options]="options"
+        [options]="rangeSliderOptions"
+        [(value)]="newSearchEngine.productMinPrice"
+        [(highValue)]="newSearchEngine.productMaxPrice"
       ></ngx-slider>
     </div>
     <div class="container-input-text">
       <span class="text-base">Email</span>
-      <input class="wallapop-bck-style" type="text" id="name" name="name" />
+      <input
+        class="wallapop-bck-style"
+        type="text"
+        [(ngModel)]="newSearchEngine.productEmail"
+      />
     </div>
   </div>
-  <div class="container-button flex justify-end mt-2">
+  <div class="container-button flex justify-end mt-2 items-center">
     <button
-      class="search-button wallapop-bck-style px-7 py-2"
+      class="search-button wallapop-bck-style px-4 py-1"
+      (click)="onResetFilters()"
+    >
+      <span class="text-xs font-semibold">Reset Filters</span>
+    </button>
+    <button
+      class="search-button wallapop-bck-style ml-2 px-10 py-1"
       (click)="onSubmit()"
     >
       <span class="text-base font-semibold">Search</span>

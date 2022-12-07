@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 
@@ -19,7 +20,8 @@ import { InternalSearchComponent } from './components/internal-search/internal-s
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
-    NgxSliderModule
+    NgxSliderModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

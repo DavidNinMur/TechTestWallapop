@@ -37,7 +37,6 @@ export class AppComponent implements OnInit {
       (result: AllProductsResponse) => {
         this.originalProductsData = result.items
         this.filteredProductsData = result.items
-        console.log('this.originalProductsData :>> ', this.originalProductsData);
       }
     )
   }
@@ -49,21 +48,22 @@ export class AppComponent implements OnInit {
 
     keysFromSearchObj.forEach((objKey) => {
       if (objKey === 'productName') {
-        newFilteredProductsData = this.originalProductsData.filter((productObj: any) => productObj.title.indexOf(newSearchFilter[objKey]) >= 0)
+        newFilteredProductsData = newFilteredProductsData.filter((productObj: any) => productObj.title.indexOf(newSearchFilter[objKey]) >= 0)
       } else if (objKey === 'productDescription') {
-        newFilteredProductsData = this.originalProductsData.filter((productObj: any) => productObj.description.indexOf(newSearchFilter[objKey]) >= 0)
+        newFilteredProductsData = newFilteredProductsData.filter((productObj: any) => productObj.description.indexOf(newSearchFilter[objKey]) >= 0)
       } else if (objKey === 'productMinPrice') {
-        newFilteredProductsData = this.originalProductsData.filter((productObj: any) => productObj.price >= newSearchFilter[objKey])
+        newFilteredProductsData = newFilteredProductsData.filter((productObj: any) => productObj.price >= newSearchFilter[objKey])
       } else if (objKey === 'productMaxPrice') {
-        newFilteredProductsData = this.originalProductsData.filter((productObj: any) => productObj.price <= newSearchFilter[objKey])
+        newFilteredProductsData = newFilteredProductsData.filter((productObj: any) => productObj.price <= newSearchFilter[objKey])
       } else if (objKey === 'productEmail') {
-        newFilteredProductsData = this.originalProductsData.filter((productObj: any) => productObj.email.indexOf(newSearchFilter[objKey]) >= 0)
+        newFilteredProductsData = newFilteredProductsData.filter((productObj: any) => productObj.email.indexOf(newSearchFilter[objKey]) >= 0)
       }
     })
 
-    this.showProductList = true;
     if (newFilteredProductsData.length <= 0) {
       this.showPopUpNoResult = true;
+    } else {
+      this.showProductList = true;
     }
 
     this.filteredProductsData = newFilteredProductsData;

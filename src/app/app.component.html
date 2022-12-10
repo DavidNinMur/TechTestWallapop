@@ -3,14 +3,15 @@
   <div class="container-internal-search pb-2">
     <InternalSearch></InternalSearch>
   </div>
-  <div class="container-popup-error" *ngIf="showPopUpNoResult">
+  <div
+    class="container-popup-error"
+    *ngIf="filteredProductsData.length < 1 && showPopUpNoResult"
+  >
     <PopupError [DefaultPhraseError]="defaultPhraseErrorForPopUp"></PopupError>
   </div>
 
-  <div class="container-list-product" *ngIf="productsData">
-    <productItem> </productItem>
+  <div class="container-list-product" *ngIf="filteredProductsData.length >= 1">
+    <productView [productList]="filteredProductsData"> </productView>
   </div>
   <router-outlet></router-outlet>
 </div>
-
-{{ productsData }}

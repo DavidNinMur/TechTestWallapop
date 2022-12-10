@@ -1,0 +1,11 @@
+<div class="bg-white">
+  <div class="mx-auto max-w-2xl pb-16 sm:pb-24 lg:max-w-7xl">
+    <div
+      class="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8"
+    >
+      <div *ngFor="let productObj of productList; index as i">
+        <productItem [productDataObj]="productObj"></productItem>
+      </div>
+    </div>
+  </div>
+</div>

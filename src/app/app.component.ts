@@ -20,7 +20,8 @@ export class AppComponent implements OnInit {
 
   showPopUpNoResult: boolean = false;
 
-  productsData: ProductBackend[] = [];
+  originalProductsData: ProductBackend[] = [];
+  filteredProductsData: ProductBackend[] = [];
 
   constructor(private productService: ProductService) { }
 
@@ -31,8 +32,12 @@ export class AppComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this.productService.getProducts().subscribe(
       (result: AllProductsResponse) => {
-        this.productsData = result.items
+        this.originalProductsData = result.items
+        this.filteredProductsData = result.items
+        console.log('this.originalProductsData :>> ', this.originalProductsData);
       }
     )
   }
+
+
 }

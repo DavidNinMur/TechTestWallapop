@@ -1,9 +1,9 @@
 export interface ProductBackend {
-    name: String,
+    title: String,
     description: String,
     price: Number,
     email: String,
-    photo: String,
+    image: String,
 }
 
 export interface AllProductsResponse {

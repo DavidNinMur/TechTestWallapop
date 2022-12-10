@@ -12,6 +12,7 @@ import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { InternalSearchComponent } from './components/internal-search/internal-search.component';
 import { PopupErrorComponent } from './components/popup-error/popup-error.component';
 import { ProductItemComponent } from './components/product-item/product-item.component';
+import { ProductViewComponent } from './views/product-view/product-view.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ProductItemComponent } from './components/product-item/product-item.com
     DropdownComponent,
     InternalSearchComponent,
     PopupErrorComponent,
-    ProductItemComponent
+    ProductItemComponent,
+    ProductViewComponent
   ],
   imports: [
     BrowserModule,

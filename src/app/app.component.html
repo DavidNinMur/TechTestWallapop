@@ -7,8 +7,10 @@
     <PopupError [DefaultPhraseError]="defaultPhraseErrorForPopUp"></PopupError>
   </div>
 
-  <div class="container-list-product">
+  <div class="container-list-product" *ngIf="productsData">
     <productItem> </productItem>
   </div>
   <router-outlet></router-outlet>
 </div>
+
+{{ productsData }}

@@ -1,11 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ProductService } from './services/product/product.service';
+
+import { AllProductsResponse, ProductBackend } from "./models/productBackend";
 
 @Component({
   selector: 'Home',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+
   title = 'wallaTechTest';
 
   optionsDropdownSearchFilter: string[] = ['Nombre', 'Descripcion', 'Precio', 'Email'];
@@ -14,10 +18,21 @@ export class AppComponent {
 
   selectedFruit: string = '';
 
-  showPopUpNoResult: boolean = false
+  showPopUpNoResult: boolean = false;
+
+  productsData: ProductBackend[] = [];
+
+  constructor(private productService: ProductService) { }
 
   changeFruit(fruit: string) {
     this.selectedFruit = fruit;
   }
 
+  async ngOnInit(): Promise<void> {
+    this.productService.getProducts().subscribe(
+      (result: AllProductsResponse) => {
+        this.productsData = result.items
+      }
+    )
+  }
 }

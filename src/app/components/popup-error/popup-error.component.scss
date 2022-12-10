@@ -1,0 +1,21 @@
+@import "../../../assets/styles/colors.scss";
+@import "../../../assets/styles/general.scss";
+
+.container-popup-error {
+  background-color: $green-strong-background;
+  .header-error,
+  .body-error {
+    span {
+      color: white;
+    }
+  }
+  .div-action-buttons {
+    color: white;
+  }
+}
+
+@media screen and (max-width: 517px) {
+  .header-error {
+    font-size: 60px !important;
+  }
+}

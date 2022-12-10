@@ -3,3 +3,26 @@
   margin-left: 15%;
   width: auto;
 }
+
+.container-popup-error {
+  margin: auto;
+  width: 40%;
+}
+
+@media screen and (max-width: 768px) {
+  .container-popup-error {
+    width: 60% !important;
+  }
+}
+
+@media screen and (max-width: 645px) {
+  .container-popup-error {
+    width: 80% !important;
+  }
+}
+
+@media screen and (max-width: 517px) {
+  .container-popup-error {
+    width: 100% !important;
+  }
+}

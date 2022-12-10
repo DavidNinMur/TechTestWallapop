@@ -9,12 +9,14 @@ import { AppComponent } from './app.component';
 
 import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { InternalSearchComponent } from './components/internal-search/internal-search.component';
+import { PopupErrorComponent } from './components/popup-error/popup-error.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DropdownComponent,
-    InternalSearchComponent
+    InternalSearchComponent,
+    PopupErrorComponent
   ],
   imports: [
     BrowserModule,

@@ -10,8 +10,11 @@ export class AppComponent {
 
   optionsDropdownSearchFilter: string[] = ['Nombre', 'Descripcion', 'Precio', 'Email'];
   defaultStringDropdownFilter: string = 'Select a filter';
+  defaultPhraseErrorForPopUp: string = 'We don’t find any result with your search. Please search again with another criteria'
 
   selectedFruit: string = '';
+
+  showPopUpNoResult: boolean = false
 
   changeFruit(fruit: string) {
     this.selectedFruit = fruit;

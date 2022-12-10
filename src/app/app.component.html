@@ -1,7 +1,9 @@
 <div class="p-4">
   <div class="container-favButton"></div>
   <div class="container-internal-search pb-2">
-    <InternalSearch></InternalSearch>
+    <InternalSearch
+      (onButtonSearchClicked)="onButtonSearchClicked($event)"
+    ></InternalSearch>
   </div>
   <div
     class="container-popup-error"
@@ -10,7 +12,10 @@
     <PopupError [DefaultPhraseError]="defaultPhraseErrorForPopUp"></PopupError>
   </div>
 
-  <div class="container-list-product" *ngIf="filteredProductsData.length >= 1">
+  <div
+    class="container-list-product"
+    *ngIf="filteredProductsData.length >= 1 && showProductList"
+  >
     <productView [productList]="filteredProductsData"> </productView>
   </div>
   <router-outlet></router-outlet>

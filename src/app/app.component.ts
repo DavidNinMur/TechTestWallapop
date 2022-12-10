@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from './services/product/product.service';
 
 import { AllProductsResponse, ProductBackend } from "./models/productBackend";
+import SearchEngine from './models/searchEngine';
 
 @Component({
   selector: 'Home',
@@ -23,6 +24,8 @@ export class AppComponent implements OnInit {
   originalProductsData: ProductBackend[] = [];
   filteredProductsData: ProductBackend[] = [];
 
+  showProductList: boolean = false;
+
   constructor(private productService: ProductService) { }
 
   changeFruit(fruit: string) {
@@ -40,4 +43,29 @@ export class AppComponent implements OnInit {
   }
 
 
+  onButtonSearchClicked(newSearchFilter: any) {
+    const keysFromSearchObj = Object.keys(newSearchFilter);
+    let newFilteredProductsData: ProductBackend[] = this.originalProductsData;
+
+    keysFromSearchObj.forEach((objKey) => {
+      if (objKey === 'productName') {
+        newFilteredProductsData = this.originalProductsData.filter((productObj: any) => productObj.title.indexOf(newSearchFilter[objKey]) >= 0)
+      } else if (objKey === 'productDescription') {
+        newFilteredProductsData = this.originalProductsData.filter((productObj: any) => productObj.description.indexOf(newSearchFilter[objKey]) >= 0)
+      } else if (objKey === 'productMinPrice') {
+        newFilteredProductsData = this.originalProductsData.filter((productObj: any) => productObj.price >= newSearchFilter[objKey])
+      } else if (objKey === 'productMaxPrice') {
+        newFilteredProductsData = this.originalProductsData.filter((productObj: any) => productObj.price <= newSearchFilter[objKey])
+      } else if (objKey === 'productEmail') {
+        newFilteredProductsData = this.originalProductsData.filter((productObj: any) => productObj.email.indexOf(newSearchFilter[objKey]) >= 0)
+      }
+    })
+
+    this.showProductList = true;
+    if (newFilteredProductsData.length <= 0) {
+      this.showPopUpNoResult = true;
+    }
+
+    this.filteredProductsData = newFilteredProductsData;
+  }
 }

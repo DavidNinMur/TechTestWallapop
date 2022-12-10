@@ -1,10 +1,14 @@
 <div class="p-4">
   <div class="container-favButton"></div>
-  <!-- <div class="container-internal-search">
+  <div class="container-internal-search pb-2">
     <InternalSearch></InternalSearch>
-  </div> -->
+  </div>
   <div class="container-popup-error" *ngIf="showPopUpNoResult">
     <PopupError [DefaultPhraseError]="defaultPhraseErrorForPopUp"></PopupError>
+  </div>
+
+  <div class="container-list-product">
+    <productItem> </productItem>
   </div>
   <router-outlet></router-outlet>
 </div>

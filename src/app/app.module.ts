@@ -10,13 +10,15 @@ import { AppComponent } from './app.component';
 import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { InternalSearchComponent } from './components/internal-search/internal-search.component';
 import { PopupErrorComponent } from './components/popup-error/popup-error.component';
+import { ProductItemComponent } from './components/product-item/product-item.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DropdownComponent,
     InternalSearchComponent,
-    PopupErrorComponent
+    PopupErrorComponent,
+    ProductItemComponent
   ],
   imports: [
     BrowserModule,

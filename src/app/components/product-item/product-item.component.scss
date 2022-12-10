@@ -1,0 +1,42 @@
+@import "../../../assets/styles/colors.scss";
+@import "../../../assets/styles/general.scss";
+
+.div-product-item {
+  background-color: white;
+}
+
+.div-email {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.div-description {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.image-style {
+  height: 100%;
+  margin: 0 auto;
+}
+
+.star-icon-styles {
+  position: absolute;
+  margin: 10px;
+  text-align: end;
+  width: 95%;
+}
+
+.star-icon-styles:hover {
+  fa-icon {
+    background: #faff00 !important;
+  }
+}
+
+.star-icon-styles-active {
+  fa-icon {
+    background: #faff00 !important;
+  }
+}

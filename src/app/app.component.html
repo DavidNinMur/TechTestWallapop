@@ -16,8 +16,8 @@
     class="container-list-product"
     *ngIf="filteredProductsData.length >= 1 && showProductList"
   >
-    <div class="flex justify-end">
-      <span class="mt-auto mb-auto"> Sort By: </span>
+    <div class="flex justify-end mt-4">
+      <span class="mt-auto mb-auto mr-2"> Sort By: </span>
       <Dropdown
         [Options]="optionsDropdownSort"
         [DefaultPhrase]="defaultStringDropdownSort"

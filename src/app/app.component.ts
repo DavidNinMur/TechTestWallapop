@@ -3,6 +3,7 @@ import { ProductService } from './services/product/product.service';
 
 import { AllProductsResponse, ProductBackend } from "./models/productBackend";
 import SearchEngine from './models/searchEngine';
+import Dropdown from './models/dropDown';
 
 @Component({
   selector: 'Home',
@@ -13,7 +14,12 @@ export class AppComponent implements OnInit {
 
   title = 'wallaTechTest';
 
-  optionsDropdownSort: string[] = ['Nombre', 'Descripcion', 'Precio', 'Email'];
+  optionsDropdownSort: Dropdown[] = [
+    { label: 'Name', value: 'name' },
+    { label: 'Description', value: 'description' },
+    { label: 'Price', value: 'price' },
+    { label: 'Email', value: 'email' }
+  ]
   defaultStringDropdownSort: string = 'Select a Sort';
   selectedSortValue: string = '';
 

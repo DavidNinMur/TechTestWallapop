@@ -1,13 +1,15 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 
+import Dropdown from 'src/app/models/dropDown';
+
 @Component({
   selector: 'Dropdown',
   templateUrl: './dropdown.component.html',
   styleUrls: ['./dropdown.component.scss'],
 })
 export class DropdownComponent {
-  @Input() Options: string[] = [];
+  @Input() Options: Dropdown[] = [];
   @Input() DefaultPhrase: string = '';
   @Output() onChangeValueDropdown: EventEmitter<string> = new EventEmitter<string>();
 
@@ -21,9 +23,9 @@ export class DropdownComponent {
     this.showDropdown = !this.showDropdown;
   }
 
-  select(item: string) {
-    this.SelectedItem = item;
-    this.onChangeValueDropdown.emit(this.SelectedItem);
+  select(optionSelected: Dropdown) {
+    this.SelectedItem = optionSelected.label;
+    this.onChangeValueDropdown.emit(optionSelected.value);
     this.toggle();
   }
 }

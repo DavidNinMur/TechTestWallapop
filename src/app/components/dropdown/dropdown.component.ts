@@ -9,7 +9,7 @@ import { faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 export class DropdownComponent {
   @Input() Options: string[] = [];
   @Input() DefaultPhrase: string = '';
-  @Output() OnChange: EventEmitter<string> = new EventEmitter<string>();
+  @Output() onChangeValueDropdown: EventEmitter<string> = new EventEmitter<string>();
 
   showDropdown: boolean = false;
   SelectedItem: string = '';
@@ -23,7 +23,7 @@ export class DropdownComponent {
 
   select(item: string) {
     this.SelectedItem = item;
-    this.OnChange.emit(this.SelectedItem);
+    this.onChangeValueDropdown.emit(this.SelectedItem);
     this.toggle();
   }
 }

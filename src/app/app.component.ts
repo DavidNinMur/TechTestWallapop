@@ -13,13 +13,12 @@ export class AppComponent implements OnInit {
 
   title = 'wallaTechTest';
 
-  optionsDropdownSearchFilter: string[] = ['Nombre', 'Descripcion', 'Precio', 'Email'];
-  defaultStringDropdownFilter: string = 'Select a filter';
-  defaultPhraseErrorForPopUp: string = 'We don’t find any result with your search. Please search again with another criteria'
-
-  selectedFruit: string = '';
+  optionsDropdownSort: string[] = ['Nombre', 'Descripcion', 'Precio', 'Email'];
+  defaultStringDropdownSort: string = 'Select a Sort';
+  selectedSortValue: string = '';
 
   showPopUpNoResult: boolean = false;
+  defaultPhraseErrorForPopUp: string = 'We don’t find any result with your search. Please search again with another criteria';
 
   originalProductsData: ProductBackend[] = [];
   filteredProductsData: ProductBackend[] = [];
@@ -28,9 +27,7 @@ export class AppComponent implements OnInit {
 
   constructor(private productService: ProductService) { }
 
-  changeFruit(fruit: string) {
-    this.selectedFruit = fruit;
-  }
+
 
   async ngOnInit(): Promise<void> {
     this.productService.getProducts().subscribe(
@@ -67,5 +64,9 @@ export class AppComponent implements OnInit {
     }
 
     this.filteredProductsData = newFilteredProductsData;
+  }
+
+  onChangeValueDropdown(newSortSelected: string) {
+    this.selectedSortValue = newSortSelected;
   }
 }

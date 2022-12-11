@@ -15,9 +15,11 @@ export class AppComponent implements OnInit {
   title = 'wallaTechTest';
 
   optionsDropdownSort: Dropdown[] = [
-    { label: 'Name', value: 'name' },
+    { label: 'Name ( A > Z )', value: 'name-az' },
+    { label: 'Name ( Z < A )', value: 'name-za' },
     { label: 'Description', value: 'description' },
-    { label: 'Price', value: 'price' },
+    { label: 'Price Asc', value: 'price-asc' },
+    { label: 'Price Desc', value: 'price-desc' },
     { label: 'Email', value: 'email' }
   ]
   defaultStringDropdownSort: string = 'Select a Sort';
@@ -45,6 +47,31 @@ export class AppComponent implements OnInit {
   }
 
 
+  sortFilteredProducts(filteredProductsData: ProductBackend[]) {
+    let newFilteredProductsData: ProductBackend[] = filteredProductsData;
+    switch (this.selectedSortValue) {
+      case 'name-az':
+        newFilteredProductsData.sort((a, b) => a.title.localeCompare(b.title))
+        break;
+      case 'name-za':
+        newFilteredProductsData.sort((a, b) => b.title.localeCompare(a.title))
+        break;
+      case 'description':
+        newFilteredProductsData.sort((a, b) => a.description.localeCompare(b.description))
+        break;
+      case 'price-asc':
+        newFilteredProductsData.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+        break;
+      case 'price-desc':
+        newFilteredProductsData.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
+        break;
+      case 'email':
+        newFilteredProductsData.sort((a, b) => a.email.localeCompare(b.email))
+        break;
+    }
+    this.filteredProductsData = newFilteredProductsData;
+  }
+
   onButtonSearchClicked(newSearchFilter: any) {
     const keysFromSearchObj = Object.keys(newSearchFilter);
     let newFilteredProductsData: ProductBackend[] = this.originalProductsData;
@@ -69,10 +96,15 @@ export class AppComponent implements OnInit {
       this.showProductList = true;
     }
 
-    this.filteredProductsData = newFilteredProductsData;
+    if (this.selectedSortValue !== '') {
+      this.sortFilteredProducts(newFilteredProductsData);
+    } else {
+      this.filteredProductsData = newFilteredProductsData;
+    }
   }
 
   onChangeValueDropdown(newSortSelected: string) {
     this.selectedSortValue = newSortSelected;
+    this.sortFilteredProducts(this.filteredProductsData);
   }
 }

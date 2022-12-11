@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from './services/product/product.service';
+import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 
 import { AllProductsResponse, ProductBackend } from "./models/productBackend";
-import SearchEngine from './models/searchEngine';
 import Dropdown from './models/dropDown';
 
 @Component({
@@ -11,8 +11,9 @@ import Dropdown from './models/dropDown';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-
   title = 'wallaTechTest';
+
+  iconArrowUp = faArrowUp;
 
   optionsDropdownSort: Dropdown[] = [
     { label: 'Name ( A > Z )', value: 'name-az' },
@@ -33,6 +34,7 @@ export class AppComponent implements OnInit {
   originalFilteredProductsData: ProductBackend[] = [];
 
   showProductList: boolean = false;
+  showScrollToTheTopButton: boolean = false;
 
   activePagination: boolean = false;
 
@@ -61,6 +63,11 @@ export class AppComponent implements OnInit {
     if (document.documentElement.scrollTop == this.paginationHeight && this.activePagination) {
       this.elementsRenderedInView = this.elementsRenderedInView + 5;
       this.setNewFilteredProductsData(this.originalFilteredProductsData);
+    }
+    if (document.documentElement.scrollTop > 100 && !this.showScrollToTheTopButton) {
+      this.showScrollToTheTopButton = true;
+    } else if (document.documentElement.scrollTop < 100) {
+      this.showScrollToTheTopButton = false;
     }
   }
 
@@ -138,6 +145,10 @@ export class AppComponent implements OnInit {
   onChangeValueDropdown(newSortSelected: string) {
     this.selectedSortValue = newSortSelected;
     this.sortFilteredProducts(this.originalFilteredProductsData);
+  }
+
+  onGoTopScroll() {
+    document.documentElement.scrollTop = 0;
   }
 }
 

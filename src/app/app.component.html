@@ -27,4 +27,16 @@
     <productView [productList]="filteredProductsData"> </productView>
   </div>
   <router-outlet></router-outlet>
+  <div
+    class="fixed right-10 bottom-5"
+    *ngIf="showScrollToTheTopButton"
+    (click)="onGoTopScroll()"
+  >
+    <button
+      class="button-go-up font-bold py-2 px-4 wallapop-bck-style inline-flex items-center justify-end"
+    >
+      <fa-icon [icon]="iconArrowUp" class="opacity-60"></fa-icon>
+      <span class="ml-2">Go Up</span>
+    </button>
+  </div>
 </div>

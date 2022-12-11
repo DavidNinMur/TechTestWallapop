@@ -11,7 +11,11 @@
   <div class="div-product-info p-4 pt-0 mt-4 block">
     <div class="div-email-with-fav text-xs flex justify-between">
       <span>{{ productDataObj.productEmail }}</span>
-      <div class="star-icon-styles">
+      <div
+        class="star-icon-styles"
+        [ngClass]="productDataObj.productFav ? 'star-icon-styles-active' : ''"
+        (click)="onClickFavorite()"
+      >
         <fa-icon [icon]="iconStar" class="cursor-pointer"></fa-icon>
       </div>
     </div>

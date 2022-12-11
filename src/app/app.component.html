@@ -24,7 +24,11 @@
         (onChangeValueDropdown)="onChangeValueDropdown($event)"
       ></Dropdown>
     </div>
-    <productView [productList]="filteredProductsData"> </productView>
+    <productView
+      [productList]="filteredProductsData"
+      (onSetFavorite)="onClickFavorite($event)"
+    >
+    </productView>
   </div>
   <router-outlet></router-outlet>
   <div

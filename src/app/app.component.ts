@@ -157,5 +157,13 @@ export class AppComponent implements OnInit {
   onGoTopScroll() {
     document.documentElement.scrollTop = 0;
   }
+
+  onClickFavorite(indexOfProductFavClicked: number) {
+    let newFilteredProductsData: ProductFrontend[] = this.filteredProductsData;
+
+    newFilteredProductsData[indexOfProductFavClicked].productFav = !newFilteredProductsData[indexOfProductFavClicked].productFav;
+
+    this.setNewFilteredProductsData(newFilteredProductsData)
+  }
 }
 

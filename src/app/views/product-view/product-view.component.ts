@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+
 import ProductFrontend from "src/app/models/productFrontEnd";
 
 @Component({
@@ -9,5 +10,9 @@ import ProductFrontend from "src/app/models/productFrontEnd";
 export class ProductViewComponent {
 
   @Input() productList: ProductFrontend[] = [];
+  @Output() onSetFavorite: EventEmitter<number> = new EventEmitter<number>();
 
+  onClickFavorite(indexOfProductFavClicked: number) {
+    this.onSetFavorite.emit(indexOfProductFavClicked);
+  }
 }

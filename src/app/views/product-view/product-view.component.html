@@ -4,7 +4,10 @@
       class="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8"
     >
       <div *ngFor="let productObj of productList; index as i">
-        <productItem [productDataObj]="productObj"></productItem>
+        <productItem
+          [productDataObj]="productObj"
+          (onSetFavorite)="onClickFavorite(i)"
+        ></productItem>
       </div>
     </div>
   </div>

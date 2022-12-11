@@ -3,28 +3,28 @@
     class="flex min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:aspect-none lg:h-80"
   >
     <img
-      [src]="productDataObj.image"
-      [alt]="productDataObj.description"
+      [src]="productDataObj.productImage"
+      [alt]="productDataObj.productDescription"
       class="h-full w-full object-cover object-center lg:h-full lg:w-full"
     />
-    <div class="star-icon-styles">
-      <fa-icon [icon]="iconStar" class="cursor-pointer"></fa-icon>
-    </div>
   </div>
   <div class="div-product-info p-4 pt-0 mt-4 block">
-    <div class="div-email text-xs">
-      <span>{{ productDataObj.email }}</span>
+    <div class="div-email-with-fav text-xs flex justify-between">
+      <span>{{ productDataObj.productEmail }}</span>
+      <div class="star-icon-styles">
+        <fa-icon [icon]="iconStar" class="cursor-pointer"></fa-icon>
+      </div>
     </div>
     <div class="div-principal-info flex justify-between text-xl font-semibold">
       <div class="div-name">
-        <span>{{ productDataObj.title }}</span>
+        <span>{{ productDataObj.productName }}</span>
       </div>
       <div class="price-name">
-        <span>{{ productDataObj.price }}€</span>
+        <span>{{ productDataObj.productPrice }}€</span>
       </div>
     </div>
     <div class="div-description">
-      <span>{{ productDataObj.description }}</span>
+      <span>{{ productDataObj.productDescription }}</span>
     </div>
   </div>
 </div>

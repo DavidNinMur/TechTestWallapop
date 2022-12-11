@@ -3,6 +3,8 @@ import { ProductService } from './services/product/product.service';
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 
 import { AllProductsResponse, ProductBackend } from "./models/productBackend";
+import ProductFrontend from "./models/productFrontEnd";
+
 import Dropdown from './models/dropDown';
 
 @Component({
@@ -29,9 +31,9 @@ export class AppComponent implements OnInit {
   showPopUpNoResult: boolean = false;
   defaultPhraseErrorForPopUp: string = 'We don’t find any result with your search. Please search again with another criteria';
 
-  originalProductsData: ProductBackend[] = [];
-  filteredProductsData: ProductBackend[] = [];
-  originalFilteredProductsData: ProductBackend[] = [];
+  originalProductsData: ProductFrontend[] = [];
+  filteredProductsData: ProductFrontend[] = [];
+  originalFilteredProductsData: ProductFrontend[] = [];
 
   showProductList: boolean = false;
   showScrollToTheTopButton: boolean = false;
@@ -53,8 +55,18 @@ export class AppComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this.productService.getProducts().subscribe(
       (result: AllProductsResponse) => {
-        this.originalProductsData = result.items
-        this.filteredProductsData = result.items
+        result.items.forEach((itemObj: ProductBackend) => {
+          let newProductData: ProductFrontend = {
+            productName: itemObj.title,
+            productDescription: itemObj.description,
+            productPrice: itemObj.price,
+            productEmail: itemObj.email,
+            productImage: itemObj.image,
+            productFav: false,
+          }
+          this.originalProductsData.push(newProductData);
+          this.filteredProductsData.push(newProductData);
+        })
       }
     )
   }
@@ -71,7 +83,7 @@ export class AppComponent implements OnInit {
     }
   }
 
-  setNewFilteredProductsData(newFilteredProductsData: ProductBackend[]) {
+  setNewFilteredProductsData(newFilteredProductsData: ProductFrontend[]) {
     if (newFilteredProductsData.length > 5) {
       this.filteredProductsData = newFilteredProductsData.slice(0, this.elementsRenderedInView);
       setTimeout(() => {
@@ -83,26 +95,26 @@ export class AppComponent implements OnInit {
   }
 
 
-  sortFilteredProducts(filteredProductsData: ProductBackend[]) {
-    let newFilteredProductsData: ProductBackend[] = filteredProductsData;
+  sortFilteredProducts(filteredProductsData: ProductFrontend[]) {
+    let newFilteredProductsData: ProductFrontend[] = filteredProductsData;
     switch (this.selectedSortValue) {
       case 'name-az':
-        newFilteredProductsData.sort((a, b) => a.title.localeCompare(b.title))
+        newFilteredProductsData.sort((a, b) => a.productName.localeCompare(b.productName))
         break;
       case 'name-za':
-        newFilteredProductsData.sort((a, b) => b.title.localeCompare(a.title))
+        newFilteredProductsData.sort((a, b) => b.productName.localeCompare(a.productName))
         break;
       case 'description':
-        newFilteredProductsData.sort((a, b) => a.description.localeCompare(b.description))
+        newFilteredProductsData.sort((a, b) => a.productDescription.localeCompare(b.productDescription))
         break;
       case 'price-asc':
-        newFilteredProductsData.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+        newFilteredProductsData.sort((a, b) => parseFloat(a.productPrice) - parseFloat(b.productPrice));
         break;
       case 'price-desc':
-        newFilteredProductsData.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
+        newFilteredProductsData.sort((a, b) => parseFloat(b.productPrice) - parseFloat(a.productPrice));
         break;
       case 'email':
-        newFilteredProductsData.sort((a, b) => a.email.localeCompare(b.email))
+        newFilteredProductsData.sort((a, b) => a.productEmail.localeCompare(b.productEmail))
         break;
     }
     console.log('sortFilteredProducts :>> ', newFilteredProductsData);
@@ -111,7 +123,7 @@ export class AppComponent implements OnInit {
 
   onButtonSearchClicked(newSearchFilter: any) {
     const keysFromSearchObj = Object.keys(newSearchFilter);
-    let newFilteredProductsData: ProductBackend[] = this.originalProductsData;
+    let newFilteredProductsData: ProductFrontend[] = this.originalProductsData;
     this.elementsRenderedInView = 5;
 
     keysFromSearchObj.forEach((objKey) => {

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ProductBackend } from 'src/app/models/productBackend';
+import ProductFrontend from "src/app/models/productFrontEnd";
 
 @Component({
   selector: 'productView',
@@ -8,6 +8,6 @@ import { ProductBackend } from 'src/app/models/productBackend';
 })
 export class ProductViewComponent {
 
-  @Input() productList: ProductBackend[] = [];
+  @Input() productList: ProductFrontend[] = [];
 
 }

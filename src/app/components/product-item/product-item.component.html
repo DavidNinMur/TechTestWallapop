@@ -9,7 +9,10 @@
     />
   </div>
   <div class="div-product-info p-4 pt-0 mt-4 block">
-    <div class="div-email-with-fav text-xs flex justify-between">
+    <div
+      class="div-email-with-fav text-xs flex justify-between"
+      *ngIf="!showAsFavoriteView"
+    >
       <span>{{ productDataObj.productEmail }}</span>
       <div
         class="star-icon-styles"
@@ -20,14 +23,24 @@
       </div>
     </div>
     <div class="div-principal-info flex justify-between text-xl font-semibold">
-      <div class="div-name">
+      <div
+        class="div-name"
+        [ngClass]="showAsFavoriteView ? 'flex justify-between w-full' : ''"
+      >
         <span>{{ productDataObj.productName }}</span>
+        <div
+          class="trash-icon-styles"
+          *ngIf="showAsFavoriteView"
+          (click)="onDeselectAsFavorite()"
+        >
+          <fa-icon [icon]="iconTrash" class="cursor-pointer"></fa-icon>
+        </div>
       </div>
-      <div class="price-name">
+      <div class="price-name" *ngIf="!showAsFavoriteView">
         <span>{{ productDataObj.productPrice }}€</span>
       </div>
     </div>
-    <div class="div-description">
+    <div class="div-description" *ngIf="!showAsFavoriteView">
       <span>{{ productDataObj.productDescription }}</span>
     </div>
   </div>

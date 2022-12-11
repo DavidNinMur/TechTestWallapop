@@ -1,0 +1,45 @@
+<div class="container-modal">
+  <div
+    class="fixed right-10 top-5 button-my-fav font-bold py-2 px-4 wallapop-bck-style inline-flex items-center justify-end cursor-pointer z-10"
+    (click)="onClickOpenModal()"
+  >
+    <fa-icon [icon]="iconStar" class="opacity-60"></fa-icon>
+    <span class="ml-2">My Favs</span>
+  </div>
+
+  <div
+    class="container-modal-opened fixed w-full h-full -m-4 z-20"
+    *ngIf="showModal"
+  >
+    <div class="container-modal-popup wallapop-bck-style p-8">
+      <div class="flex justify-end">
+        <fa-icon
+          [icon]="iconCross"
+          class="h-4 w-4 opacity-60 cursor-pointer"
+          (click)="onCloseModal()"
+        ></fa-icon>
+      </div>
+      <div class="search-div h-16 w-3/4 m-auto">
+        <input
+          class="wallapop-bck-style w-full h-full pl-5 text-xl"
+          type="text"
+          placeholder="Insert a name to filter..."
+          [(ngModel)]="nameSearched"
+          (ngModelChange)="setNameFilter($event)"
+        />
+      </div>
+      <div
+        class="h-5/6 overflow-y-scroll mt-5"
+        *ngIf="filteredFavoriteProductsList.length >= 1"
+      >
+        <productView
+          [showAsFavoriteView]="true"
+          [productList]="filteredFavoriteProductsList"
+          (onSetFavorite)="onClickToDeleteFromFavorites($event)"
+          (onDeselectFavorite)="onClickToDeleteFromFavorites($event)"
+        >
+        </productView>
+      </div>
+    </div>
+  </div>
+</div>

@@ -13,6 +13,7 @@ import { InternalSearchComponent } from './components/internal-search/internal-s
 import { PopupErrorComponent } from './components/popup-error/popup-error.component';
 import { ProductItemComponent } from './components/product-item/product-item.component';
 import { ProductViewComponent } from './views/product-view/product-view.component';
+import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ProductViewComponent } from './views/product-view/product-view.componen
     InternalSearchComponent,
     PopupErrorComponent,
     ProductItemComponent,
-    ProductViewComponent
+    ProductViewComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,

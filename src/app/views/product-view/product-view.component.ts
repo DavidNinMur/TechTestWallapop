@@ -10,9 +10,16 @@ import ProductFrontend from "src/app/models/productFrontEnd";
 export class ProductViewComponent {
 
   @Input() productList: ProductFrontend[] = [];
+  @Input() showAsFavoriteView: boolean = false;
+
   @Output() onSetFavorite: EventEmitter<number> = new EventEmitter<number>();
+  @Output() onDeselectFavorite: EventEmitter<number> = new EventEmitter<number>();
 
   onClickFavorite(indexOfProductFavClicked: number) {
     this.onSetFavorite.emit(indexOfProductFavClicked);
+  }
+
+  onDeselectAsFavorite(indexOfDeselectFavorite: number) {
+    this.onDeselectFavorite.emit(indexOfDeselectFavorite);
   }
 }

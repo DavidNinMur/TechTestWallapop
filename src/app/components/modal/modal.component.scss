@@ -1,0 +1,23 @@
+@import "../../../assets/styles/colors.scss";
+@import "../../../assets/styles/general.scss";
+
+.button-my-fav {
+  background-color: $green-background;
+}
+
+.button-my-fav:hover {
+  background-color: $green-strong-background;
+  color: white;
+}
+
+.container-modal-opened {
+  background-color: $green-strong-background;
+}
+
+.container-modal-popup {
+  background-color: $green-background;
+  width: 90%;
+  height: 90%;
+  margin: 0 auto;
+  margin-top: 2.5%;
+}

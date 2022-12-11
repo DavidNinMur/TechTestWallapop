@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { faStar } from '@fortawesome/free-regular-svg-icons';
+import { faStar, faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 
 import ProductFrontend from "src/app/models/productFrontEnd";
 
@@ -11,11 +11,19 @@ import ProductFrontend from "src/app/models/productFrontEnd";
 export class ProductItemComponent {
 
   iconStar = faStar;
+  iconTrash = faTrashAlt;
 
   @Input() productDataObj: ProductFrontend;
+  @Input() showAsFavoriteView: boolean = false;
+
   @Output() onSetFavorite: EventEmitter<string> = new EventEmitter<string>();
+  @Output() onDeselectFavorite: EventEmitter<string> = new EventEmitter<string>();
 
   onClickFavorite() {
     this.onSetFavorite.emit();
+  }
+
+  onDeselectAsFavorite() {
+    this.onDeselectFavorite.emit();
   }
 }

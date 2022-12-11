@@ -29,6 +29,16 @@
   }
 }
 
+.trash-icon-styles {
+  font-size: 16px;
+}
+
+.trash-icon-styles:hover {
+  fa-icon {
+    color: #ff253a !important;
+  }
+}
+
 .star-icon-styles-active {
   fa-icon {
     background: #faff00 !important;

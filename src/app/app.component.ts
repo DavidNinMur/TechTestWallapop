@@ -35,6 +35,8 @@ export class AppComponent implements OnInit {
   filteredProductsData: ProductFrontend[] = [];
   originalFilteredProductsData: ProductFrontend[] = [];
 
+  favoriteProductsData: ProductFrontend[] = [];
+
   showProductList: boolean = false;
   showScrollToTheTopButton: boolean = false;
 
@@ -45,12 +47,6 @@ export class AppComponent implements OnInit {
   elementsRenderedInView: number = 5;
 
   constructor(private productService: ProductService) { }
-
-  ngDoCheck() {
-    if (this.activePagination) {
-      this.paginationHeight = document.documentElement.offsetHeight - document.documentElement.clientHeight
-    }
-  }
 
   async ngOnInit(): Promise<void> {
     this.productService.getProducts().subscribe(
@@ -88,6 +84,7 @@ export class AppComponent implements OnInit {
       this.filteredProductsData = newFilteredProductsData.slice(0, this.elementsRenderedInView);
       setTimeout(() => {
         this.activePagination = true
+        this.paginationHeight = document.documentElement.offsetHeight - document.documentElement.clientHeight
       }, 1000);
     } else {
       this.filteredProductsData = newFilteredProductsData;
@@ -163,7 +160,23 @@ export class AppComponent implements OnInit {
 
     newFilteredProductsData[indexOfProductFavClicked].productFav = !newFilteredProductsData[indexOfProductFavClicked].productFav;
 
+    if (newFilteredProductsData[indexOfProductFavClicked].productFav) {
+      this.favoriteProductsData.push(newFilteredProductsData[indexOfProductFavClicked]);
+    } else {
+      this.favoriteProductsData = this.favoriteProductsData.filter((items) => items.productName !== newFilteredProductsData[indexOfProductFavClicked].productName)
+    }
+
     this.setNewFilteredProductsData(newFilteredProductsData)
+  }
+
+  onDeleteFromFavorites(indexOfProductToDeleteFromFavList: number) {
+    let newFavoriteProductsData: ProductFrontend[] = this.favoriteProductsData;
+
+    this.favoriteProductsData = newFavoriteProductsData.filter((item, index) => index !== indexOfProductToDeleteFromFavList)
+
+    let newFilteredProductsData: ProductFrontend[] = this.filteredProductsData;
+
+    newFilteredProductsData[indexOfProductToDeleteFromFavList].productFav = !newFilteredProductsData[indexOfProductToDeleteFromFavList].productFav;
   }
 }
 

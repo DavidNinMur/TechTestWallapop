@@ -94,7 +94,6 @@ export class AppComponent implements OnInit {
     }
   }
 
-
   sortFilteredProducts(filteredProductsData: ProductFrontend[]) {
     let newFilteredProductsData: ProductFrontend[] = filteredProductsData;
     switch (this.selectedSortValue) {
@@ -127,16 +126,12 @@ export class AppComponent implements OnInit {
     this.elementsRenderedInView = 5;
 
     keysFromSearchObj.forEach((objKey) => {
-      if (objKey === 'productName') {
-        newFilteredProductsData = newFilteredProductsData.filter((productObj: any) => productObj.title.indexOf(newSearchFilter[objKey]) >= 0)
-      } else if (objKey === 'productDescription') {
-        newFilteredProductsData = newFilteredProductsData.filter((productObj: any) => productObj.description.indexOf(newSearchFilter[objKey]) >= 0)
+      if (objKey === 'productName' || objKey === 'productDescription' || objKey === 'productEmail') {
+        newFilteredProductsData = newFilteredProductsData.filter((productObj: ProductFrontend) => productObj[objKey].indexOf(newSearchFilter[objKey]) >= 0)
       } else if (objKey === 'productMinPrice') {
-        newFilteredProductsData = newFilteredProductsData.filter((productObj: any) => productObj.price >= newSearchFilter[objKey])
+        newFilteredProductsData = newFilteredProductsData.filter((productObj: ProductFrontend) => productObj.productPrice >= newSearchFilter[objKey])
       } else if (objKey === 'productMaxPrice') {
-        newFilteredProductsData = newFilteredProductsData.filter((productObj: any) => productObj.price <= newSearchFilter[objKey])
-      } else if (objKey === 'productEmail') {
-        newFilteredProductsData = newFilteredProductsData.filter((productObj: any) => productObj.email.indexOf(newSearchFilter[objKey]) >= 0)
+        newFilteredProductsData = newFilteredProductsData.filter((productObj: ProductFrontend) => productObj.productPrice <= newSearchFilter[objKey])
       }
     })
 

@@ -30,12 +30,23 @@ export class AppComponent implements OnInit {
 
   originalProductsData: ProductBackend[] = [];
   filteredProductsData: ProductBackend[] = [];
+  originalFilteredProductsData: ProductBackend[] = [];
 
   showProductList: boolean = false;
 
+  activePagination: boolean = false;
+
+  paginationHeight: number;
+  paginationScrollHeight: number;
+  elementsRenderedInView: number = 5;
+
   constructor(private productService: ProductService) { }
 
-
+  ngDoCheck() {
+    if (this.activePagination) {
+      this.paginationHeight = document.documentElement.offsetHeight - document.documentElement.clientHeight
+    }
+  }
 
   async ngOnInit(): Promise<void> {
     this.productService.getProducts().subscribe(
@@ -44,6 +55,24 @@ export class AppComponent implements OnInit {
         this.filteredProductsData = result.items
       }
     )
+  }
+
+  doSomethingOnScroll($event: Event) {
+    if (document.documentElement.scrollTop == this.paginationHeight && this.activePagination) {
+      this.elementsRenderedInView = this.elementsRenderedInView + 5;
+      this.setNewFilteredProductsData(this.originalFilteredProductsData);
+    }
+  }
+
+  setNewFilteredProductsData(newFilteredProductsData: ProductBackend[]) {
+    if (newFilteredProductsData.length > 5) {
+      this.filteredProductsData = newFilteredProductsData.slice(0, this.elementsRenderedInView);
+      setTimeout(() => {
+        this.activePagination = true
+      }, 1000);
+    } else {
+      this.filteredProductsData = newFilteredProductsData;
+    }
   }
 
 
@@ -69,12 +98,14 @@ export class AppComponent implements OnInit {
         newFilteredProductsData.sort((a, b) => a.email.localeCompare(b.email))
         break;
     }
-    this.filteredProductsData = newFilteredProductsData;
+    console.log('sortFilteredProducts :>> ', newFilteredProductsData);
+    this.setNewFilteredProductsData(newFilteredProductsData);
   }
 
   onButtonSearchClicked(newSearchFilter: any) {
     const keysFromSearchObj = Object.keys(newSearchFilter);
     let newFilteredProductsData: ProductBackend[] = this.originalProductsData;
+    this.elementsRenderedInView = 5;
 
     keysFromSearchObj.forEach((objKey) => {
       if (objKey === 'productName') {
@@ -96,15 +127,17 @@ export class AppComponent implements OnInit {
       this.showProductList = true;
     }
 
+    this.originalFilteredProductsData = newFilteredProductsData;
     if (this.selectedSortValue !== '') {
       this.sortFilteredProducts(newFilteredProductsData);
     } else {
-      this.filteredProductsData = newFilteredProductsData;
+      this.setNewFilteredProductsData(newFilteredProductsData);
     }
   }
 
   onChangeValueDropdown(newSortSelected: string) {
     this.selectedSortValue = newSortSelected;
-    this.sortFilteredProducts(this.filteredProductsData);
+    this.sortFilteredProducts(this.originalFilteredProductsData);
   }
 }
+

@@ -1,6 +1,7 @@
 <div class="relative w-32 sm:w-36 lg:w-40">
   <div
     (click)="toggle()"
+    id="toogleDiv"
     class="container-dropdown relative px-4 py-2 rounded-xl box-shadow flex justify-between items-center cursor-pointer"
   >
     <div class="mr-2">
@@ -30,6 +31,7 @@
   >
     <div
       (click)="select(option)"
+      id="optionDiv"
       *ngFor="let option of Options"
       class="py-2 px-4 w-full hover:bg-neutral-100"
     >

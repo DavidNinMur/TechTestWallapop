@@ -5,7 +5,7 @@ import { faStar, faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 
 import { ProductItemComponent } from './product-item.component';
 
-import { DEFAULT_PRODUCT_OBJ } from "./test-data/modalTestData"
+import { DEFAULT_PRODUCT_OBJ } from "./test-data/productItemTestData"
 
 describe('ProductItemComponent', () => {
   let component: ProductItemComponent;

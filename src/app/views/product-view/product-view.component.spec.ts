@@ -8,9 +8,9 @@ describe('ProductViewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProductViewComponent ]
+      declarations: [ProductViewComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(ProductViewComponent);
     component = fixture.componentInstance;
@@ -20,4 +20,22 @@ describe('ProductViewComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('onClickFavorite --> when call onClickFavorite, should emit the index to add', () => {
+    spyOn(component.onSetFavorite, 'emit');
+    let indexToAddFromFavorites: number = 1;
+
+    component.onClickFavorite(indexToAddFromFavorites);
+
+    expect(component.onSetFavorite.emit).toHaveBeenCalledWith(indexToAddFromFavorites);
+  })
+
+  it('onDeselectAsFavorite --> when call onDeselectAsFavorite, should emit the index to delete', () => {
+    spyOn(component.onDeselectFavorite, 'emit');
+    let indexToDeleteFromFavorites: number = 1;
+
+    component.onDeselectAsFavorite(indexToDeleteFromFavorites);
+
+    expect(component.onDeselectFavorite.emit).toHaveBeenCalledWith(indexToDeleteFromFavorites);
+  })
 });

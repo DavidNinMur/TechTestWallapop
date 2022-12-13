@@ -20,7 +20,7 @@ export class InternalSearchComponent {
     ceil: 2000
   };
 
-  @Output() onButtonSearchClicked: EventEmitter<SearchEngine> = new EventEmitter<SearchEngine>();
+  @Output() onButtonSearchClicked: EventEmitter<{}> = new EventEmitter<{}>();
 
   onSubmit() {
     const newFiltersToProductView = diffObjs(this.defaultSearchEngine, this.newSearchEngine)

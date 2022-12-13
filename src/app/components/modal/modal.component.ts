@@ -36,7 +36,7 @@ export class ModalComponent {
     }
   }
 
-  setNameFilter(nameFilter: any) {
+  setNameFilter(nameFilter: string) {
     if (nameFilter != '') {
       this.filteredFavoriteProductsList = this.filteredFavoriteProductsList.filter((productObj: ProductFrontend) => productObj.productName.indexOf(nameFilter) >= 0)
     } else {

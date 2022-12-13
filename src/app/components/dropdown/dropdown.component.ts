@@ -14,18 +14,18 @@ export class DropdownComponent {
   @Output() onChangeValueDropdown: EventEmitter<string> = new EventEmitter<string>();
 
   showDropdown: boolean = false;
-  SelectedItem: string = '';
+  selectedItem: string = '';
 
   iconArrowUp = faArrowUp;
   iconArrowDown = faArrowDown;
 
-  toggle() {
+  onClickDropdown() {
     this.showDropdown = !this.showDropdown;
   }
 
-  select(optionSelected: Dropdown) {
-    this.SelectedItem = optionSelected.label;
+  onSelectOption(optionSelected: Dropdown) {
+    this.selectedItem = optionSelected.label;
     this.onChangeValueDropdown.emit(optionSelected.value);
-    this.toggle();
+    this.onClickDropdown();
   }
 }

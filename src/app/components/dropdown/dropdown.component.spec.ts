@@ -29,48 +29,48 @@ describe('DropdownComponent', () => {
 
   it('should have the default values correctly', () => {
     expect(component.showDropdown).toBeFalse();
-    expect(component.SelectedItem).toBe('');
+    expect(component.selectedItem).toBe('');
     expect(component.iconArrowUp).toBe(faArrowUp);
     expect(component.iconArrowDown).toBe(faArrowDown);
   })
 
-  it('should change showDropdown when call toggle', () => {
+  it('showDropdown --> should change showDropdown when call onClickDropdown', () => {
     expect(component.showDropdown).toBeFalse();
-    component.toggle()
+    component.onClickDropdown()
     expect(component.showDropdown).toBeTrue();
   })
 
-  it('should change showDropdown when call toggle twice', () => {
+  it('showDropdown --> should change showDropdown when call onClickDropdown twice', () => {
     expect(component.showDropdown).toBeFalse();
-    component.toggle()
+    component.onClickDropdown()
     expect(component.showDropdown).toBeTrue();
-    component.toggle()
+    component.onClickDropdown()
     expect(component.showDropdown).toBeFalse();
   })
 
-  it('when call select, should call the output function and set new selectedItem', () => {
+  it('onSelectOption --> when call onSelectOption, should call the output function and set new selectedItem', () => {
     spyOn(component.onChangeValueDropdown, 'emit');
     let newOptionSelected: Dropdown = { label: 'Name', value: 'name' };
     let expectSelectItemData: string = 'Name';
     let expectEmitData: string = 'name';
     component.showDropdown = true;
 
-    expect(component.SelectedItem).toBe('');
+    expect(component.selectedItem).toBe('');
 
-    component.select(newOptionSelected);
+    component.onSelectOption(newOptionSelected);
 
-    expect(component.SelectedItem).toBe(expectSelectItemData);
+    expect(component.selectedItem).toBe(expectSelectItemData);
     expect(component.onChangeValueDropdown.emit).toHaveBeenCalledWith(expectEmitData)
     expect(component.showDropdown).toBeFalse();
   })
 
-  it('when i click toggle', fakeAsync(() => {
-    spyOn(component, 'toggle');
+  it('onClickDropdown --> when i click onClickDropdown', fakeAsync(() => {
+    spyOn(component, 'onClickDropdown');
 
     let button = fixture.debugElement.nativeElement.querySelector('#toogleDiv');
     button.click();
 
     tick();
-    expect(component.toggle).toHaveBeenCalled();
+    expect(component.onClickDropdown).toHaveBeenCalled();
   }))
 });
